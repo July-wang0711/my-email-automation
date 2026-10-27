@@ -9,8 +9,8 @@ mail_password = os.environ["MAIL_PASSWORD"]
 to_email = os.environ["TO_EMAIL_ADDRESS"]
 
 # 构造邮件内容
-msg = MIMEText('这是一封通过 GitHub Actions 自动发送的测试邮件。', 'plain', 'utf-8')
-msg['Subject'] = Header('来自 GitHub Actions 的问候', 'utf-8')
+msg = MIMEText('加油，你是最棒的>.</！', 'plain', 'utf-8')
+msg['Subject'] = Header('每日鼓励', 'utf-8')
 msg['From'] = mail_username
 msg['To'] = to_email
 
