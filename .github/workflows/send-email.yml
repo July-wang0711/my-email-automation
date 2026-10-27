@@ -1,0 +1,25 @@
+name: Send Daily Email
+
+on:
+  workflow_dispatch: # 允许你手动点击按钮运行，方便测试
+  schedule:
+    - cron: '0 1 * * *' # 每天 UTC 时间 1:00 运行（即北京时间上午 9:00）
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run email script
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          TO_EMAIL_ADDRESS: ${{ secrets.TO_EMAIL_ADDRESS }}
+        run: python send_email.py
